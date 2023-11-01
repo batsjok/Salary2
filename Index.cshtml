@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<script>
+    const brut = document.getElementById("brut");
+    const uyarı = document.getElementById("uyarı");
+    const hesap = document.getElementById("hesap");
+
+    
+    hesap.addEventListener("click", function () {
+    
+
+        
+        if (brut < 11250) {
+            uyarı.style.display = "grid"; 
+        } else {
+            uyarı.style.display = "none"; 
+        }
+    });</script>*@
+
+<form method="post" asp-action="hesap">
+    <div>
+        <h1>Brütten Nete Hesaplayıcı</h1>
+    </div>
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">TL</span>
+        <input id="brut" name="brut" style="width:100px" type="text" class="form-control" placeholder="Brüt Ücretiniz..">
+    </div>
+
+    <div id="uyarı" class="uyarı" style="border: solid; border-color: blue; padding-left: 5px; margin: 20px 0px; width: 200px;">
+        @ViewBag.asg
+    </div>
+    
+    @if (ViewBag.brut is not null)
+    {
+        <table id="maas" class="table" style="width:max-content;">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Brüt Ücret</th>
+                    <th scope="col">SGK İşçi</th>
+                    <th scope="col">İşsizlik İşçi</th>
+                    <th scope="col">Gelir Vergisi</th>
+                    <th scope="col">Damga Vergisi</th>
+                    <th scope="col">Net Ücret</th>
+                    <th scope="col">Toplam Maliyet</th>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@ViewBag.brut</td>
+                    <td>@ViewBag.SGK</td>
+                    <td>@ViewBag.isci</td>
+                    <td>@ViewBag.gv</td>
+                    <td>@ViewBag.dv</td>
+                    <td>@ViewBag.net</td>
+                    <td>@ViewBag.maliyet</td>
+                </tr>
+            </tbody>
+            </table>
+           
+            
+            }
+            
+
+
+
+            <button style="margin-top:30px; margin-bottom:30px" id="hesap" type="submit" class="btn btn-primary">Hesapla</button>
+    </form>
+
